@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Logout from './Logout';
 
-function TicketForm({ onSubmit }) {
+function TicketForm() {
   const { currentUser } = useAuth();
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
@@ -26,17 +26,11 @@ function TicketForm({ onSubmit }) {
       }
 
       const db = getFirestore();
-      const docRef = await addDoc(collection(db, 'tickets'), {
+      await addDoc(collection(db, 'tickets'), {
         subject,
         description,
         imageUrl,
         userEmail: currentUser.email 
-      });
-
-      onSubmit({
-        subject,
-        description,
-        imageUrl
       });
 
       setSubject('');

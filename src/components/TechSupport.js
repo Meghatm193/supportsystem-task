@@ -4,7 +4,7 @@ import { getFirestore, collection, getDocs, doc, updateDoc } from 'firebase/fire
 import { useAuth } from '../contexts/AuthContext';
 import Logout from './Logout';
 
-function TechSupportPage() {
+function TechSupport() {
   const { currentUser } = useAuth();
   const [tickets, setTickets] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
@@ -54,7 +54,10 @@ function TechSupportPage() {
       setError('Error submitting answer: ' + error.message);
     }
   };
-  
+
+  const handleTextareaClick = (e) => {
+    e.stopPropagation(); // Prevent the click event from reaching the parent div
+  };
 
   return (
     <div className="container mt-4">
@@ -80,7 +83,7 @@ function TechSupportPage() {
                 {selectedTicket && selectedTicket.id === ticket.id && (
                   <div>
                     <h3>Reply To Query Raised</h3>
-                    <textarea className="form-control mb-3" value={answer} onChange={handleAnswerChange}></textarea>
+                    <textarea className="form-control mb-3" value={answer} onClick={handleTextareaClick} onChange={handleAnswerChange}></textarea>
                     <button className="btn btn-primary" onClick={handleAnswerSubmit}>Submit</button>
                     {error && <p className="text-danger mt-2">{error}</p>}
                   </div>
@@ -94,4 +97,4 @@ function TechSupportPage() {
   );
 }
 
-export default TechSupportPage;
+export default TechSupport;

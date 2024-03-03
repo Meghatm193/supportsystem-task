@@ -60,7 +60,6 @@ function App() {
 
   return (
     <BrowserRouter>
-<<<<<<< HEAD
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -72,16 +71,6 @@ function App() {
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </AuthProvider>
-=======
-      <Routes>
-  <Route path="/login" element={<Login />} />
-  <Route path="/register" element={<Register />} />
-  <Route path="/ticket-form" element={<TicketForm onSubmit={handleTicketSubmission} />} />
-  <Route path="/ticket-list" element={<TicketList tickets={tickets} />} />
-  <Route path="/home" element={<Home onLogout={handleLogout} />} />
-  <Route path="*" element={<Navigate to="/login" />} /> {/* Redirect to login for unmatched routes */}
-</Routes>
->>>>>>> ee6a48e1d15358b8b68ac41edb8634138762e924
     </BrowserRouter>
   );
 }
