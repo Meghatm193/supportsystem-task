@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth'; // Import signOut from firebase auth
 
-function Home({ onLogout }) {
+function Home({ user, onLogout }) {
   const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleLogout = async () => {
@@ -18,7 +18,14 @@ function Home({ onLogout }) {
   return (
     <div>
       <h1>Home</h1>
-      <button onClick={handleLogout}>Logout</button> {/* Logout button */}
+      {user ? ( // If user is logged in
+        <>
+          <button onClick={handleLogout}>Logout</button> {/* Logout button */}
+          <Link to='/ticket-list'>View Tickets</Link>
+        </>
+      ) : ( // If user is not logged in
+        <Link to='/login'>Login</Link>
+      )}
     </div>
   );
 }

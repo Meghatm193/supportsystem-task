@@ -15,7 +15,7 @@ function Login() {
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password);
       // Login successful, redirect to home page
-      navigate('/'); // Redirect to home page
+      navigate('/ticket-form'); // Redirect to home page
     } catch (error) {
       setError(error.message);
     }
